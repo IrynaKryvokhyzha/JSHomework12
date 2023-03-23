@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1> Задача 4</h1>
+	<p>
+		Для розглянутих методів сортування спробувати вивести етапи сортування 
+		шляхом виведення відповідних таблиць за зразком.
+		Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран.
+	
+	</p>
+	<script>
+		let arr = [3,5,1,4,2]
+		let newArr1 = [...arr]
+		let newArr2 = [...arr]
+		let newArr3 = [...arr]
+		
+			document.write(`Сортування бульбашкою: <br>${arr}<br>`)
+
+//-----------------Сортування бульбашкою
+
+
+		let arrLength = arr.length
+		let changed
+		do {
+			changed = false
+			for (let i = 1; i < arrLength; i++) {
+				if (newArr1[i-1]>newArr1[i]) {
+				let tmp = newArr1[i-1]
+					newArr1[i-1] = newArr1[i]
+					newArr1[i] = tmp
+				changed = true
+				document.write(`${newArr1}<br>`)
+			}
+		}
+		} while (changed);
+
+//-----------------Сортування змішуванням
+		document.write(`Сортування змішуванням: <br>${arr}<br>`)
+
+		let leftIndex = 0
+		let rightIndex = newArr2.length - 1
+		while (leftIndex<rightIndex) {
+			for (let i = leftIndex; i < rightIndex; i++) {
+				if (newArr2[i]>newArr2[i+1]) {
+					let tmp = newArr2[i]
+					newArr2[i] = newArr2[i+1]
+					newArr2[i+1] = tmp
+						document.write(`${newArr2}<br>`)
+				}
+			}
+			rightIndex--
+		
+			for (let i = rightIndex; i > leftIndex; i--) {
+				if (newArr2[i]<newArr2[i-1]) {
+					let tmp = newArr2[i]
+					newArr2[i] = newArr2[i-1]
+					newArr2[i-1] = tmp
+					document.write(`${newArr2}<br>`)
+				}
+			}
+			leftIndex++
+		}
+//-----------------Сортування включенням
+
+		document.write(`Сортування включенням: <br>${arr}<br>`)
+
+		let currentEl
+		let i
+		let newArr3Length = newArr3.length
+		for (let k = 1; k < newArr3Length; k++) {
+			currentEl = newArr3[k]
+			i = k - 1
+			while (i>=0 && newArr3[i] > currentEl) {
+				newArr3[i+1] = newArr3[i]
+				i--
+			}
+			newArr3[i+1] = currentEl
+			document.write(`${newArr3}<br>`)
+		}
+		
+	</script>
+</body>
+
+</html>
+

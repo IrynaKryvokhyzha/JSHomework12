@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1> Задача 3</h1>
+	<p>
+		Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування включеннями.	
+	</p>
+	<script>
+
+		
+		function getRandomNum(minV, maxV) {
+			return minV + Math.floor(Math.random()*(maxV-minV+1))
+		}
+
+		function getRandomArray(arrLength, minV, maxV) {
+			let arr = []
+			for (let i = 0; i < arrLength; i++) {
+				const randomNum = getRandomNum(minV, maxV) 
+				arr.push(randomNum)
+			}
+			return arr
+		}
+		let arr = getRandomArray(30, 0, 100)
+
+		function getChangesAmount(array) {
+			let counter = 0
+			for (let k = 1; k < array.length; k++) {
+				const currentEl = array[k]
+				let i = k-1
+				while (i>=0 && array[i]>currentEl) {
+					let tmp = array[i+1]
+						array[i+1] = array[i]
+						array[i] = tmp
+					i--
+					counter++
+				}
+				array[i+1] = currentEl
+			}
+			return counter
+		}
+		
+		let changesAmount = getChangesAmount(arr)
+		document.write(`Під час сортування включеннями було : ${changesAmount}`)
+	</script>
+</body>
+
+</html>
+
